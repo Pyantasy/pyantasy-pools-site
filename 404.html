@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Join a Pyantasy Pools invite." />
+  <!-- SITE_BASE: rewritten by scripts/sync-public-site-config.sh from PAGES_BASE_PATH -->
+  <base href="/pyantasy-pools-site/" />
+  <title>Join pool — Pyantasy Pools</title>
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <!--
+    GitHub Pages serves this file for unknown paths. /join/{code} has no static file,
+    so this page renders the invite landing and extracts the code from the URL.
+    <base> keeps assets/nav correct when this document is served under a nested path.
+  -->
+  <header class="site-header">
+    <a class="brand" href="./">Pyantasy Pools</a>
+    <nav>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </header>
+
+  <main class="join" id="join-main" hidden>
+    <p class="eyebrow">Pool invite</p>
+    <h1>Join a pool</h1>
+    <p id="blurb">Open this link on your iPhone to join in the Pyantasy Pools app.</p>
+    <div class="code" id="code-display" aria-label="Invite code">————</div>
+    <p class="cta-row" style="justify-content:center">
+      <a class="cta" id="open-app" href="pyantasy://join/">Open in app</a>
+      <a class="cta secondary" href="https://apps.apple.com/">Get the app</a>
+    </p>
+    <p class="fine">
+      Universal links use <code>/join/{code}</code> on this site. If the app does not open,
+      copy the code and paste it under Join Pool after installing.
+    </p>
+  </main>
+
+  <main class="hero" id="not-found-main">
+    <h1>Page not found</h1>
+    <p class="lede">That URL is not part of the Pyantasy Pools site.</p>
+    <p class="cta-row">
+      <a class="cta" href="./">Go home</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p><a href="./">Home</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+  </footer>
+  <script src="assets/join.js"></script>
+  <script>
+    (function () {
+      var parts = location.pathname.split("/").filter(Boolean);
+      var isJoin = parts.indexOf("join") >= 0;
+      var joinMain = document.getElementById("join-main");
+      var notFound = document.getElementById("not-found-main");
+      if (isJoin) {
+        joinMain.hidden = false;
+        notFound.hidden = true;
+        document.title = "Join pool — Pyantasy Pools";
+      }
+    })();
+  </script>
+</body>
+</html>
